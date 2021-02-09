@@ -12,12 +12,12 @@ project 1 - A Random Quote Generator
 ***/
 
 const quotes = [
-  {quote: 'Well, nobody’s perfect.', source: 'Osgood Fielding III', citation: 'Some Like It Hot', year: 1959},
-  {quote: 'Do your parents know you’re Ramones?', source: 'Miss Togar', citation: 'Rock N Roll High School', year: 1979}, 
-  {quote: 'No Christine, that’s a frog. Bears wear hats.', citation: 'The Great Muppet Caper', year: 1980},
-  {quote: 'IS THIS SOMETHING YOU CAN SHARE WITH THE REST OF US, AMAZING LARRY?', source: 'Pee Wee Herman', citation: 'Pee Wee’s Big Adventure', year: 1985}, 
-  {quote: 'And what better way to say “I love you” than with the gift of a spatula?', citation: 'UHF', year: 1989}, 
-  {quote: 'Well, what if there is no tomorrow? There wasn’t one today.', source: 'Phil Connors', citation: 'Groundhog Day', year: 1993}
+  {quote: 'Well, nobody’s perfect.', source: 'Osgood Fielding III', citation: 'Some Like It Hot', year: 1959, imdb: ''},
+  {quote: 'Do your parents know you’re Ramones?', source: 'Miss Togar', citation: 'Rock N Roll High School', year: 1979, imdb: ''}, 
+  {quote: 'No Christine, that’s a frog. Bears wear hats.', source: 'Jim Henson', citation: 'The Great Muppet Caper', year: 1980, imdb: ''},
+  {quote: 'IS THIS SOMETHING YOU CAN SHARE WITH THE REST OF US, AMAZING LARRY?', source: 'Pee Wee Herman', citation: 'Pee Wee’s Big Adventure', year: 1985, imdb: ''}, 
+  {quote: 'And what better way to say “I love you” than with the gift of a spatula?', source: '“Weird” Al Yankovic', citation: 'UHF', year: 1989, imdb: ''}, 
+  {quote: 'Well, what if there is no tomorrow? There wasn’t one today.', source: 'Phil Connors', citation: 'Groundhog Day', year: 1993, imdb: ''}
 ];
 
 /* bg array */
@@ -27,7 +27,7 @@ const backgrounds = ['#c36', '#6c3', '#3c6', '#36c', '#c63', '#63c'];
 let currentQuote = 0;
 
 /* select DOM element */
-const quoteBox = 
+const quoteBox = document.querySelector('.quote-box');
 
 /***
  * `getRandomQuote` function
@@ -50,12 +50,15 @@ function getRandomQuote() {
  * `printQuote` function
 ***/
 function printQuote(currentQuote) {
-  console.log(`currentQuote: ${currentQuote}`);
+  const quoteHtml = `<p class="quote">${quotes[currentQuote].quote}</p><p class="source">${quotes[currentQuote].source}<span class="citation">${quotes[currentQuote].citation}</span><span class="year">${quotes[currentQuote].year}</span></p>`;
+  quoteBox.innerHTML = quoteHtml;
+  updateBg(currentQuote);
 }
 
 /* update bg color */
 function updateBg(currentQuote) {
-  
+  const bg = backgrounds[currentQuote];
+  document.querySelector('body').style.backgroundColor = bg;
 }
 
 /***
