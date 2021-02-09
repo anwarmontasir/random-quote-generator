@@ -33,31 +33,34 @@ const quoteBox = document.querySelector('.quote-box');
  * `getRandomQuote` function
 ***/
 function getRandomQuote() {
-  // generate random number
-  const randomInt = Math.floor(Math.random() * quotes.length);
-  // make sure new number is different from current quote number
-  if (randomInt !== currentQuote) {
-    // update current quote number
-    currentQuote = randomInt;
-    // print quote
-    printQuote(currentQuote);
-  } else {
-    getRandomQuote();
-  }
+  // store random number
+  let randomInt;
+  // if random number = previous quote number, pick again
+  do {
+    randomInt = Math.floor(Math.random() * quotes.length);
+  } while (randomInt === currentQuote);
+  // return new quote number
+  return (currentQuote = randomInt);
 }
 
 /***
  * `printQuote` function
 ***/
-function printQuote(currentQuote) {
-  const quoteHtml = `<p class="quote">${quotes[currentQuote].quote}</p><p class="source">${quotes[currentQuote].source}<span class="citation"><a href="${quotes[currentQuote].imdb}" target="_blank">${quotes[currentQuote].citation}</a></span><span class="year">${quotes[currentQuote].year}</span></p>`;
+function printQuote() {
+  // get new quote number
+  const quoteNumber = getRandomQuote();
+  // create new HTML
+  const quoteHtml = 
+  `<p class="quote">${quotes[quoteNumber].quote}</p><p class="source">${quotes[quoteNumber].source}<span class="citation"><a href="${quotes[quoteNumber].imdb}" target="_blank">${quotes[quoteNumber].citation}</a></span><span class="year">${quotes[quoteNumber].year}</span></p>`;
+  // update DOM
   quoteBox.innerHTML = quoteHtml;
-  updateBg(currentQuote);
+  // run updateBg
+  updateBg(quoteNumber);
 }
 
 /* update bg color */
-function updateBg(currentQuote) {
-  const bg = backgrounds[currentQuote];
+function updateBg(quoteNumber) {
+  const bg = backgrounds[quoteNumber];
   document.querySelector('body').style.backgroundColor = bg;
 }
 
@@ -66,4 +69,4 @@ function updateBg(currentQuote) {
  * DO NOT CHANGE THE CODE BELOW!!
 ***/
 
-document.getElementById('load-quote').addEventListener("click", getRandomQuote, false);
+document.getElementById('load-quote').addEventListener("click", printQuote, false);
