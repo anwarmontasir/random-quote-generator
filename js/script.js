@@ -56,6 +56,12 @@ function printQuote() {
   quoteBox.innerHTML = quoteHtml;
   // run updateBg
   updateBg(quoteNumber);
+
+  // end timer
+  stop();
+
+  // restart timer 
+  timer();
 }
 
 /* update bg color */
@@ -63,6 +69,19 @@ function updateBg(quoteNumber) {
   const bg = backgrounds[quoteNumber];
   document.querySelector('body').style.backgroundColor = bg;
 }
+
+/* timer */
+let t;
+
+function timer() { 
+  t = setInterval(printQuote, 5000); 
+} 
+
+function stop() { 
+  clearInterval(t); 
+}
+
+timer();
 
 /***
  * click event listener for the print quote button
