@@ -12,12 +12,12 @@ project 1 - A Random Quote Generator
 ***/
 
 const quotes = [
-  {quote: 'Well, nobody’s perfect.', source: 'Osgood Fielding III', citation: 'Some Like It Hot', year: 1959, imdb: ''},
-  {quote: 'Do your parents know you’re Ramones?', source: 'Miss Togar', citation: 'Rock N Roll High School', year: 1979, imdb: ''}, 
-  {quote: 'No Christine, that’s a frog. Bears wear hats.', source: 'Jim Henson', citation: 'The Great Muppet Caper', year: 1980, imdb: ''},
-  {quote: 'IS THIS SOMETHING YOU CAN SHARE WITH THE REST OF US, AMAZING LARRY?', source: 'Pee Wee Herman', citation: 'Pee Wee’s Big Adventure', year: 1985, imdb: ''}, 
-  {quote: 'And what better way to say “I love you” than with the gift of a spatula?', source: '“Weird” Al Yankovic', citation: 'UHF', year: 1989, imdb: ''}, 
-  {quote: 'Well, what if there is no tomorrow? There wasn’t one today.', source: 'Phil Connors', citation: 'Groundhog Day', year: 1993, imdb: ''}
+  {quote: 'Well, nobody’s perfect.', source: 'Osgood Fielding III', citation: 'Some Like It Hot', year: 1959, imdb: 'https://www.imdb.com/title/tt0053291/'},
+  {quote: 'Do your parents know you’re Ramones?', source: 'Miss Togar', citation: 'Rock N Roll High School', year: 1979, imdb: 'https://www.imdb.com/title/tt0079813/'}, 
+  {quote: 'No Christine, that’s a frog. Bears wear hats.', source: 'Jim Henson', citation: 'The Great Muppet Caper', year: 1981, imdb: 'https://www.imdb.com/title/tt0082474/'},
+  {quote: 'IS THIS SOMETHING YOU CAN SHARE WITH THE REST OF US, AMAZING LARRY?', source: 'Pee Wee Herman', citation: 'Pee Wee’s Big Adventure', year: 1985, imdb: 'https://www.imdb.com/title/tt0089791/'}, 
+  {quote: 'And what better way to say “I love you” than with the gift of a spatula?', source: '“Weird Al” Yankovic', citation: 'UHF', year: 1989, imdb: 'https://www.imdb.com/title/tt0098546/'}, 
+  {quote: 'Well, what if there is no tomorrow? There wasn’t one today.', source: 'Phil Connors', citation: 'Groundhog Day', year: 1993, imdb: 'https://www.imdb.com/title/tt0107048/'}
 ];
 
 /* bg array */
@@ -50,7 +50,7 @@ function getRandomQuote() {
  * `printQuote` function
 ***/
 function printQuote(currentQuote) {
-  const quoteHtml = `<p class="quote">${quotes[currentQuote].quote}</p><p class="source">${quotes[currentQuote].source}<span class="citation">${quotes[currentQuote].citation}</span><span class="year">${quotes[currentQuote].year}</span></p>`;
+  const quoteHtml = `<p class="quote">${quotes[currentQuote].quote}</p><p class="source">${quotes[currentQuote].source}<span class="citation"><a href="${quotes[currentQuote].imdb}" target="_blank">${quotes[currentQuote].citation}</a></span><span class="year">${quotes[currentQuote].year}</span></p>`;
   quoteBox.innerHTML = quoteHtml;
   updateBg(currentQuote);
 }
